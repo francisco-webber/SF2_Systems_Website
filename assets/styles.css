@@ -2,6 +2,7 @@
 :root {
   --bg: #07111f;
   --bg-2: #0d1a2e;
+  --header-logo-height: 48px;
   --hero-backdrop-rgb: 8, 22, 45;
   --hero-grid-rgb: 112, 134, 172;
   --surface: #ffffff;
@@ -61,13 +62,32 @@ button {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(7, 17, 31, 0.82);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(18px);
+  background: #2f343d;
+  border-bottom: 0;
+  backdrop-filter: none;
+  isolation: isolate;
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: var(--header-logo-height);
+  width: max(220px, calc(50vw - 4cm));
+  background: #fff;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.site-header > .container {
+  position: relative;
+  z-index: 1;
 }
 
 .header-inner {
-  min-height: 82px;
+  min-height: var(--header-logo-height);
+  height: var(--header-logo-height);
   display: grid;
   grid-template-columns: auto 1fr auto;
   gap: 28px;
@@ -83,14 +103,9 @@ button {
 
 .brand img {
   width: auto;
-  max-width: 42vw;
-  height: 46px;
-  filter:
-    brightness(1.03)
-    contrast(1.06)
-    drop-shadow(0 -0.5px 0 rgba(255,255,255,0.34))
-    drop-shadow(0 0.8px 0 rgba(2,10,20,0.62))
-    drop-shadow(0 3px 8px rgba(0,0,0,0.2));
+  max-width: min(54vw, 320px);
+  height: var(--header-logo-height);
+  filter: none;
 }
 
 .brand-mark {
@@ -1322,6 +1337,9 @@ body.prerelease-modal-open {
 }
 
 @media (max-width: 900px) {
+  :root {
+    --header-logo-height: 44px;
+  }
   .desktop-nav,
   .header-cta {
     display: none;
@@ -1334,8 +1352,8 @@ body.prerelease-modal-open {
     grid-template-columns: auto 1fr auto;
   }
   .brand img {
-    height: 40px;
-    max-width: 50vw;
+    height: var(--header-logo-height);
+    max-width: min(70vw, 280px);
   }
   section {
     padding: 76px 0;
