@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Software — SF2 Systems GmbH</title>
-  <meta name="description" content="SF2 Software-Stack für Condition Monitoring und Predictive Maintenance: Studio SE, Suite RT und Engine RT." />
+  <meta name="description" content="SF2 Software-Stack für Condition Monitoring und Predictive Maintenance: Suite SE, Suite RT und Engine." />
   <link rel="stylesheet" href="../../assets/styles.css" />
   <script src="../../assets/main.js" defer></script>
 </head>
@@ -26,7 +26,7 @@
               <summary class="dropdown-summary">Software</summary>
               <ul class="dropdown-menu">
                 <li><a href="../../produkte/software/index.html">Software Übersicht</a></li>
-                <li><a href="../../produkte/software/studio-se/index.html">SF2-Studio SE</a></li>
+                <li><a href="../../produkte/software/studio-se/index.html">SF2-Suite SE</a></li>
                 <li><a href="../../produkte/software/suite-rt/index.html">SF2-Suite RT</a></li>
                 <li><a href="../../produkte/software/engine-rt/index.html">SF2-Engine</a></li>
               </ul>
@@ -64,7 +64,7 @@
               <summary>Software</summary>
               <ul class="submenu">
                 <li><a href="../../produkte/software/index.html">Software Übersicht</a></li>
-                <li><a href="../../produkte/software/studio-se/index.html">SF2-Studio SE</a></li>
+                <li><a href="../../produkte/software/studio-se/index.html">SF2-Suite SE</a></li>
                 <li><a href="../../produkte/software/suite-rt/index.html">SF2-Suite RT</a></li>
                 <li><a href="../../produkte/software/engine-rt/index.html">SF2-Engine</a></li>
               </ul>
@@ -93,7 +93,7 @@
           <div class="placeholder-card">
             <div class="kicker">Software / Übersicht</div>
             <h1>Der SF2 Software-Stack</h1>
-            <p>Von der lokalen Evaluierung bis zum produktiven Flottenbetrieb: Studio SE, Suite RT und Engine RT sind als durchgängiger Workflow für Applikationsingenieure konzipiert.</p>
+            <p>Suite SE und Suite RT laufen beide lokal auf der Workstation: Suite SE arbeitet ausschließlich mit Sensor-Logs aus Dateien, Suite RT verarbeitet zusätzlich Sensordaten in Echtzeit über das Netzwerk.</p>
             <div class="chip-row">
               <span class="chip">No-Cloud</span>
               <span class="chip">Deterministisch</span>
@@ -108,8 +108,8 @@
         <div class="container">
           <div class="grid-3">
             <article class="card">
-              <h3>SF2-Studio SE</h3>
-              <p>Die freie Local Edition für den risikofreien Einstieg mit realen Sensordaten direkt auf der eigenen Workstation.</p>
+              <h3>SF2-Suite SE</h3>
+              <p>Die freie SE Edition für den risikofreien Einstieg: lokal auf der eigenen Workstation und ausschließlich mit Sensor-Logs aus Dateien (CSV).</p>
               <ul>
                 <li>CSV-basierte Logfile-Verarbeitung</li>
                 <li>UDTAT/UDM/UFP Workflow (Universal Data Transformation and Analytic Tool, Universal Data Mapper, Universal Finger Printer)</li>
@@ -119,7 +119,7 @@
             </article>
             <article class="card">
               <h3>SF2-Suite RT</h3>
-              <p>Die Produktionssuite für Echtzeit-Streams, SCADA-Integration, Deployment-Pakete und Flottenmanagement.</p>
+              <p>Die Produktionssuite für lokale Workstations mit zusätzlicher Echtzeitverarbeitung über Netzwerk-Streams, SCADA-Integration und Flottenmanagement.</p>
               <ul>
                 <li>Live-Datenquellen und Simulatoren</li>
                 <li>SCADA-Ausgabe in Echtzeit</li>
@@ -128,7 +128,7 @@
               <a class="card-link" href="../../produkte/software/suite-rt/index.html">Produktdetails</a>
             </article>
             <article class="card">
-              <h3>SF2-Engine RT</h3>
+              <h3>SF2-Engine</h3>
               <p>Das headless Runtime-Modul für den robusten Betrieb ausgerollter Modelle in Produktionsumgebungen.</p>
               <ul>
                 <li>Docker-Image oder SF2-Hardware-Modul</li>
@@ -144,7 +144,7 @@
       <section id="vergleich-studio-suite">
         <div class="container">
           <div class="section-header">
-            <h2>Vergleichsmatrix: SF2-Studio SE vs. SF2-Suite RT</h2>
+            <h2>Vergleichsmatrix: SF2-Suite SE vs. SF2-Suite RT</h2>
           </div>
           <article class="card">
             <div class="table-wrap">
@@ -152,7 +152,7 @@
                 <thead>
                   <tr>
                     <th>Funktion</th>
-                    <th>SF2-Studio SE</th>
+                    <th>SF2-Suite SE</th>
                     <th>SF2-Suite RT</th>
                   </tr>
                 </thead>
@@ -163,9 +163,9 @@
                     <td>Ja</td>
                   </tr>
                   <tr>
-                    <td>CSV-basierte Logfile-Verarbeitung</td>
+                    <td>Ausschließlicher File-Log-Modus (Sensor-Logs aus Dateien)</td>
                     <td>Ja</td>
-                    <td>Ja</td>
+                    <td>Nein</td>
                   </tr>
                   <tr>
                     <td>UDTAT / UDM / UFP Workflow (Universal Data Transformation and Analytic Tool / Universal Data Mapper / Universal Finger Printer)</td>
@@ -210,7 +210,7 @@
                 </tbody>
               </table>
             </div>
-            <p class="inline-note">Empfohlener Pfad: Einstieg mit Studio SE für schnelle Use-Case-Erprobung, anschließend produktiver Rollout mit Suite RT.</p>
+            <p class="inline-note">Empfohlener Pfad: Einstieg mit Suite SE für schnelle Use-Case-Erprobung, anschließend produktiver Rollout mit Suite RT.</p>
           </article>
         </div>
       </section>
@@ -223,11 +223,11 @@
           <div class="grid-2">
             <article class="card">
               <h3>Phase 1: Evaluierung</h3>
-              <p>Mit Studio SE starten Sie innerhalb weniger Stunden in einen realen Proof-of-Value auf vorhandenen Maschinendaten.</p>
+              <p>Mit Suite SE starten Sie innerhalb weniger Stunden in einen realen Proof-of-Value auf vorhandenen Maschinendaten.</p>
             </article>
             <article class="card">
               <h3>Phase 2: Produktion</h3>
-              <p>Suite RT und Engine RT übernehmen den Übergang in Echtzeitbetrieb, Rollout und skalierbares Runtime-Management.</p>
+              <p>Suite RT und Engine übernehmen den Übergang in Echtzeitbetrieb, Rollout und skalierbares Runtime-Management.</p>
             </article>
           </div>
           <div class="metric-grid">
@@ -275,7 +275,7 @@
       <nav class="footer-nav" aria-label="Software">
         <h3>Software</h3>
         <ul>
-          <li><a href="../../produkte/software/studio-se/index.html">SF2-Studio SE</a></li>
+          <li><a href="../../produkte/software/studio-se/index.html">SF2-Suite SE</a></li>
           <li><a href="../../produkte/software/suite-rt/index.html">SF2-Suite RT</a></li>
           <li><a href="../../produkte/software/engine-rt/index.html">SF2-Engine</a></li>
         </ul>

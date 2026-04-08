@@ -39,8 +39,8 @@ Current integrated assets:
 <figure class="media-frame">
   <picture>
     <source srcset="assets/images/software/studio-se/studio-se-csv-import-v1.webp" type="image/webp">
-    <img src="assets/images/software/studio-se/studio-se-csv-import-v1.png" alt="SF2 Studio SE CSV import view" loading="lazy" decoding="async" width="1600" height="1000">
+    <img src="assets/images/software/studio-se/studio-se-csv-import-v1.png" alt="SF2 Suite SE CSV import view" loading="lazy" decoding="async" width="1600" height="1000">
   </picture>
-  <figcaption>CSV import and channel mapping in SF2 Studio SE.</figcaption>
+  <figcaption>CSV import and channel mapping in SF2 Suite SE.</figcaption>
 </figure>
 ```

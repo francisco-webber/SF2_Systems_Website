@@ -1,4 +1,4 @@
-SF2 Studio SE - Starter Kit
+SF2 Suite SE - Starter Kit
 
 Dieses Starter Kit ist fuer die technische Erstbewertung durch Applikationsingenieure gedacht.
 
@@ -10,4 +10,4 @@ Enthalten:
 - license-request-template.txt: Vorlage fuer Lizenzanfrage
 
 Hinweis:
-Die produktiven Studio-SE-Binaries und Updates werden ueber den SF2 License Server freigeschaltet.
+Die produktiven Suite-SE-Binaries und Updates werden ueber den SF2 License Server freigeschaltet.

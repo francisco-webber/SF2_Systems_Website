@@ -1,10 +1,10 @@
-SF2 Studio SE - MacOSX-ARM64 Installationsleitfaden
+SF2 Suite SE - MacOSX-ARM64 Installationsleitfaden
 
 1) Lizenzschluessel anfordern (berufliche E-Mail)
 2) MacOSX-ARM64 Paket aus dem License Server herunterladen
 3) App in den Programme-Ordner kopieren
 4) Beim Erststart ggf. Sicherheitsfreigabe in den Systemeinstellungen erlauben
-5) Studio starten und Lizenzschluessel hinterlegen
+5) Suite SE starten und Lizenzschluessel hinterlegen
 
 Erstvalidierung:
 - demo-sensor-log.csv laden

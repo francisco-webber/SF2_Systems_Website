@@ -1,9 +1,9 @@
-SF2 Studio SE - Linux ARM Installationsleitfaden
+SF2 Suite SE - Linux ARM Installationsleitfaden
 
 1) Lizenzschluessel anfordern
 2) ARM-Paket aus dem License Server herunterladen
 3) Abhaengigkeiten gemaess Release Notes installieren
-4) Studio starten und Lizenz aktivieren
+4) Suite SE starten und Lizenz aktivieren
 
 Empfehlung:
 Vor dem ersten Run den Demo-Datensatz laden und die Standard-Pipeline pruefen.

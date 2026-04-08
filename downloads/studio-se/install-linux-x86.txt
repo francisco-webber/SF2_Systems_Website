@@ -1,9 +1,9 @@
-SF2 Studio SE - Linux x86 Installationsleitfaden
+SF2 Suite SE - Linux x86 Installationsleitfaden
 
 1) Lizenzschluessel anfordern (berufliche E-Mail)
 2) Binaerpaket aus dem License Server herunterladen
 3) Paket entpacken und ausfuehrbar setzen
-4) Studio starten und Lizenzschluessel einmalig hinterlegen
+4) Suite SE starten und Lizenzschluessel einmalig hinterlegen
 
 Minimaler Ersttest:
 - demo-sensor-log.csv laden
