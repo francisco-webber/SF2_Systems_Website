@@ -32,7 +32,8 @@ function initHeaderLogoBand() {
 
     const minRightEdge = brandRect.right + 8;
     const safeRightEdge = Math.max(minRightEdge, rightEdge);
-    header.style.setProperty("--header-white-width", Math.round(safeRightEdge) + "px");
+    const expandedRightEdge = Math.min(window.innerWidth, safeRightEdge * 1.2);
+    header.style.setProperty("--header-white-width", Math.round(expandedRightEdge) + "px");
   };
 
   updateHeaderWhiteZone();
