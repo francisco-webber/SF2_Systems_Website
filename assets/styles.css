@@ -4,6 +4,7 @@
   --bg-2: #0d1a2e;
   --header-logo-height: 46px;
   --header-logo-image-height: 40px;
+  --cta-button-height: 42px;
   --hero-backdrop-rgb: 8, 22, 45;
   --hero-grid-rgb: 112, 134, 172;
   --surface: #ffffff;
@@ -216,6 +217,10 @@ button {
   white-space: nowrap;
 }
 
+.header-cta .cta-button.primary {
+  box-shadow: none;
+}
+
 .mobile-toggle {
   display: none;
   width: 48px;
@@ -397,7 +402,7 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 52px;
+  min-height: var(--cta-button-height);
   padding: 0 20px;
   border-radius: 999px;
   border: 1px solid transparent;
@@ -1256,7 +1261,7 @@ body.prerelease-modal-open {
 }
 
 .prerelease-actions .cta-button {
-  min-height: 46px;
+  min-height: var(--cta-button-height);
 }
 
 .prerelease-actions .cta-button.secondary {
