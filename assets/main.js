@@ -447,6 +447,8 @@ function isTransactionalLink(link) {
     return false;
   }
 
+  if (link.hasAttribute("data-force-prerelease-gate")) return true;
+
   const hrefWithoutQuery = normalizedHref.split("#")[0].split("?")[0];
   const label = (link.textContent || "").trim().toLowerCase();
 

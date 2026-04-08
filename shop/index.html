@@ -91,8 +91,7 @@
       <section class="placeholder-hero">
         <div class="container">
           <div class="placeholder-card">
-            <div class="kicker">Shop / Einstieg</div>
-            <h1>SF2 Shop &amp; Lizenzpfade</h1>
+            <h1>SF2 Shop</h1>
             <p>Direkter Einstieg für technische Teams: von der kostenlosen SE Edition bis zur produktiven Runtime- und Hardware-Skalierung.</p>
             <div class="chip-row">
               <span class="chip">Bottom-up Einstieg</span>
@@ -116,7 +115,7 @@
                 <li>Die Lizenz ist frei und läuft nicht ab</li>
               </ul>
               <div class="placeholder-actions">
-                <a class="cta-button primary" href="../shop/studio-se/index.html">Download &amp; Aktivierung</a>
+                <a class="cta-button primary" href="../shop/studio-se/index.html" data-force-prerelease-gate="true">Download &amp; Aktivierung</a>
               </div>
             </article>
             <article class="card">
@@ -128,7 +127,7 @@
                 <li>Enterprise-Rollout-fähig</li>
               </ul>
               <div class="placeholder-actions">
-                <a class="cta-button primary" href="../produkte/software/suite-rt/index.html">Download &amp; Aktivierung</a>
+                <a class="cta-button primary" href="../produkte/software/suite-rt/index.html" data-force-prerelease-gate="true">Download &amp; Aktivierung</a>
               </div>
             </article>
             <article class="card">
@@ -136,11 +135,11 @@
               <p>Runtime-Lizenz pro ausgerollter Instanz für den Betrieb direkt an der Anlage.</p>
               <ul>
                 <li>Headless Produktionsbetrieb</li>
-                <li>SF2-Edge Device (Factory Floor) oder Kontainer (Datacenter)</li>
+                <li>SF2.Edge Device (Factory Floor) oder Kontainer (Datacenter)</li>
                 <li>Management direkt aus der SF2-Suite RT heraus</li>
               </ul>
               <div class="placeholder-actions">
-                <a class="cta-button primary" href="../produkte/software/engine-rt/index.html">Download &amp; Aktivierung</a>
+                <a class="cta-button primary" href="../produkte/software/engine-rt/index.html" data-force-prerelease-gate="true">Download &amp; Aktivierung</a>
               </div>
             </article>
             <article class="card">
@@ -170,37 +169,37 @@
       <section>
         <div class="container">
           <article class="card">
-            <h3>Preis- und Beschaffungslogik</h3>
-            <p>Für Engineering-Teams sind typischerweise zwei Pfade relevant: schneller PoV-Start über Suite SE/Verification Device und anschließender Enterprise-Rollout über Suite- und Engine-Lizenzen.</p>
+            <h3>Typischer Ablauf für Applikationsengineering</h3>
+            <p>In der Praxis starten Teams meist mit SF2-Suite SE auf bestehenden Sensor-Logs, wechseln danach auf SF2-Suite RT für Live-Daten und orchestrieren den produktiven Betrieb über SF2-Engine pro Instanz. Je nach Einsatzort läuft die Runtime auf dem SF2.Edge Device im Feld oder im Datacenter-Kontainer.</p>
             <div class="table-wrap">
               <table class="spec-table">
                 <thead>
                   <tr>
-                    <th>Komponente</th>
-                    <th>Typischer Einsatzzweck</th>
-                    <th>Lizenz-/Beschaffungsmodell</th>
+                    <th>Produkt</th>
+                    <th>Wann wird es genutzt?</th>
+                    <th>Was wird aktiviert?</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>SF2-Suite SE</td>
-                    <td>Self-Service-Evaluierung</td>
-                    <td>Kostenfrei mit Lizenzschlüssel</td>
+                    <td>Frueher Projektstart und Evaluierung mit Sensor-Logs</td>
+                    <td>Lizenzschluessel (kostenfrei, unbefristet)</td>
                   </tr>
                   <tr>
                     <td>SF2-Suite RT</td>
-                    <td>Produktionssuite und Rollout-Steuerung</td>
-                    <td>Unternehmenslizenz (jährlich)</td>
+                    <td>Live-Betrieb, Streaming und Deployment-Steuerung</td>
+                    <td>Unternehmenslizenz</td>
                   </tr>
                   <tr>
                     <td>SF2-Engine</td>
-                    <td>Laufzeitbetrieb pro ausgerollter Instanz</td>
-                    <td>Edge-Lizenz pro Runtime/Controller</td>
+                    <td>Runtime pro ausgerollter Anlage oder Instanz</td>
+                    <td>Engine-Lizenz pro Runtime-Instanz</td>
                   </tr>
                   <tr>
-                    <td>Edge/Verification Hardware</td>
-                    <td>Feldbetrieb und Verifikation</td>
-                    <td>Einmaliger Hardwarekauf</td>
+                    <td>SF2.Edge Device / SF2-Verification Device</td>
+                    <td>Feldbetrieb, Verifikation und Inbetriebnahme</td>
+                    <td>Hardware-Beschaffung je nach Projektumfang</td>
                   </tr>
                 </tbody>
               </table>
