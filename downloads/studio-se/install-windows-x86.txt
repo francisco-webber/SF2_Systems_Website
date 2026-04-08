@@ -1,0 +1,11 @@
+SF2 Studio SE - Windows x86 Installationsleitfaden
+
+1) Lizenzschluessel anfordern
+2) Installer-Paket aus dem License Server herunterladen
+3) Setup ausfuehren und Zielpfad waehlen
+4) Studio starten und Lizenz hinterlegen
+
+Erstvalidierung:
+- Demo-CSV importieren
+- Statuskanaele definieren
+- Trigger-Schwellen testen

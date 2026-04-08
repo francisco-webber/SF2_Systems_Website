@@ -1,0 +1,12 @@
+SF2 Studio SE - MacOSX-intel Installationsleitfaden
+
+1) Lizenzschluessel anfordern (berufliche E-Mail)
+2) MacOSX-intel Paket aus dem License Server herunterladen
+3) App in den Programme-Ordner kopieren
+4) Beim Erststart ggf. Sicherheitsfreigabe in den Systemeinstellungen erlauben
+5) Studio starten und Lizenzschluessel hinterlegen
+
+Empfohlener Kurztest:
+- Demo-CSV importieren
+- Statuskanaele definieren
+- Trigger-Schwellen einmal durchtesten

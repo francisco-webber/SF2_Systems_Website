@@ -1,0 +1,11 @@
+SF2 Studio SE - Linux x86 Installationsleitfaden
+
+1) Lizenzschluessel anfordern (berufliche E-Mail)
+2) Binaerpaket aus dem License Server herunterladen
+3) Paket entpacken und ausfuehrbar setzen
+4) Studio starten und Lizenzschluessel einmalig hinterlegen
+
+Minimaler Ersttest:
+- demo-sensor-log.csv laden
+- UDTAT-Konfiguration (Universal Data Transformation and Analytic Tool) erstellen
+- Fingerprint fuer OPERATIONAL und ALERT erzeugen
