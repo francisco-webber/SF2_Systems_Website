@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initDesktopDropdownDismiss();
   initCarousel();
   initInViewVideos();
+  initShopConversionFunnel();
   initPreReleaseGate();
 });
 
@@ -178,6 +179,55 @@ function initInViewVideos() {
   );
 
   videos.forEach((video) => observer.observe(video));
+}
+
+function initShopConversionFunnel() {
+  const actionButtons = Array.from(document.querySelectorAll("a.cta-button[href]"));
+  if (!actionButtons.length) return;
+
+  const pathname = window.location.pathname || "";
+  const isShopContext =
+    /\/shop\/(?:index\.html)?$/.test(pathname) ||
+    /\/shop\/[^/]+\/index\.html$/.test(pathname);
+  if (isShopContext) return;
+
+  const shopHref = resolveRelativeShopIndexHref(pathname);
+
+  actionButtons.forEach((buttonLink) => {
+    const href = (buttonLink.getAttribute("href") || "").trim();
+    if (!href) return;
+
+    const normalizedHref = href.toLowerCase();
+    if (
+      normalizedHref.startsWith("#") ||
+      normalizedHref.startsWith("mailto:") ||
+      normalizedHref.startsWith("tel:") ||
+      normalizedHref.startsWith("javascript:")
+    ) {
+      return;
+    }
+
+    buttonLink.setAttribute("href", shopHref);
+    buttonLink.removeAttribute("download");
+    buttonLink.setAttribute("data-no-prerelease-gate", "true");
+  });
+}
+
+function resolveRelativeShopIndexHref(pathname) {
+  const pathSegments = pathname.split("/").filter(Boolean);
+  if (!pathSegments.length) return "shop/index.html";
+
+  const lastSegment = pathSegments[pathSegments.length - 1];
+  const hasFileSegment = lastSegment.includes(".");
+  const directorySegments = hasFileSegment ? pathSegments.slice(0, -1) : pathSegments;
+
+  const repoRootIndex = directorySegments.indexOf("SF2_Systems_Website");
+  if (repoRootIndex >= 0) {
+    const depthFromRepoRoot = Math.max(0, directorySegments.length - (repoRootIndex + 1));
+    return "../".repeat(depthFromRepoRoot) + "shop/index.html";
+  }
+
+  return "../".repeat(directorySegments.length) + "shop/index.html";
 }
 
 function initPreReleaseGate() {

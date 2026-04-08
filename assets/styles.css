@@ -551,6 +551,11 @@ section {
   color: var(--text-strong);
 }
 
+.free-tier-label {
+  color: var(--success);
+  font-weight: 700;
+}
+
 .card p {
   margin: 0;
   color: var(--text-soft);
