@@ -461,12 +461,6 @@ button {
   height: 100%;
   object-fit: contain;
   object-position: center;
-  -webkit-mask-image: radial-gradient(128% 114% at 52% 50%, rgba(0,0,0,1) 54%, rgba(0,0,0,0.96) 64%, rgba(0,0,0,0.78) 76%, rgba(0,0,0,0.44) 88%, rgba(0,0,0,0) 100%);
-  mask-image: radial-gradient(128% 114% at 52% 50%, rgba(0,0,0,1) 54%, rgba(0,0,0,0.96) 64%, rgba(0,0,0,0.78) 76%, rgba(0,0,0,0.44) 88%, rgba(0,0,0,0) 100%);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
 }
 
 section {
