@@ -368,6 +368,7 @@ button {
   line-height: 1.72;
   color: rgba(255,255,255,0.76);
   max-width: 69ch;
+  padding-right: clamp(24px, 4vw, 72px);
 }
 
 .cta-row {
@@ -1321,6 +1322,9 @@ body.prerelease-modal-open {
 @media (max-width: 1100px) {
   .hero-inner {
     grid-template-columns: 1fr;
+  }
+  .hero-copy .lead {
+    padding-right: 0;
   }
   .hero-visual {
     min-height: 360px;
