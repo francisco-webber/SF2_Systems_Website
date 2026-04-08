@@ -461,6 +461,13 @@ button {
   height: 100%;
   object-fit: contain;
   object-position: center;
+  /* Fade edges to transparency so the original image blends into the hero backdrop. */
+  -webkit-mask-image: radial-gradient(130% 116% at 52% 50%, rgba(0,0,0,1) 58%, rgba(0,0,0,0.96) 68%, rgba(0,0,0,0.7) 80%, rgba(0,0,0,0.35) 90%, rgba(0,0,0,0) 100%);
+  mask-image: radial-gradient(130% 116% at 52% 50%, rgba(0,0,0,1) 58%, rgba(0,0,0,0.96) 68%, rgba(0,0,0,0.7) 80%, rgba(0,0,0,0.35) 90%, rgba(0,0,0,0) 100%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
 }
 
 section {
