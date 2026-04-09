@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCarousel();
   initInViewVideos();
   initShopConversionFunnel();
-  initPreReleaseGate();
+  initPreRegistrationMailto();
 });
 
 function initHeaderLogoBand() {
@@ -263,60 +263,10 @@ function resolveRelativeShopIndexHref(pathname) {
   return "../".repeat(directorySegments.length) + "shop/index.html";
 }
 
-function initPreReleaseGate() {
-  const waitlistStorageKey = "sf2_prerelease_waitlist_v1";
-  const preRegistrationRecipient = "pre-registration@sf2systems.com";
+function initPreRegistrationMailto() {
+  const recipient = "licensing@sf2systems.com";
   const transactionalLinks = Array.from(document.querySelectorAll("a[href]")).filter(isTransactionalLink);
   if (!transactionalLinks.length) return;
-
-  const modal = buildPreReleaseModal();
-  const backdrop = modal.backdrop;
-  const closeButton = modal.closeButton;
-  const cancelButton = modal.cancelButton;
-  const form = modal.form;
-  const emailInput = modal.emailInput;
-  const statusMessage = modal.statusMessage;
-  const actionHint = modal.actionHint;
-  const submitButton = modal.submitButton;
-
-  let activeTrigger = null;
-  let requestedTarget = "";
-  let originPageUrl = "";
-
-  const openModal = (triggerElement, targetHref) => {
-    activeTrigger = triggerElement;
-    requestedTarget = targetHref || "";
-    originPageUrl = window.location.href;
-
-    statusMessage.textContent = "";
-    statusMessage.classList.remove("is-error", "is-success");
-    actionHint.textContent = requestedTarget ? "Requested action: " + requestedTarget : "";
-
-    backdrop.hidden = false;
-    document.body.classList.add("prerelease-modal-open");
-    window.setTimeout(() => emailInput.focus(), 0);
-  };
-
-  const closeModal = () => {
-    backdrop.hidden = true;
-    document.body.classList.remove("prerelease-modal-open");
-    const returnUrl = originPageUrl;
-    if (activeTrigger) {
-      activeTrigger.focus();
-    }
-    activeTrigger = null;
-    originPageUrl = "";
-    if (returnUrl && window.location.href !== returnUrl) {
-      window.location.href = returnUrl;
-      return;
-    }
-  };
-
-  const showStatus = (message, statusType) => {
-    statusMessage.textContent = message;
-    statusMessage.classList.remove("is-error", "is-success");
-    statusMessage.classList.add(statusType === "error" ? "is-error" : "is-success");
-  };
 
   transactionalLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
@@ -324,143 +274,50 @@ function initPreReleaseGate() {
       if (event.button !== 0) return;
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
 
+      const requestedAction = (link.getAttribute("href") || "").trim();
+      const page = window.location.pathname || "/";
+      const submittedAt = new Date().toISOString();
+      const mailtoHref = buildPreRegistrationMailtoHref(recipient, {
+        requestedAction: requestedAction,
+        page: page,
+        submittedAt: submittedAt
+      });
+      if (!mailtoHref) return;
+
       event.preventDefault();
-      openModal(link, link.getAttribute("href"));
+      window.location.href = mailtoHref;
     });
   });
+}
 
-  closeButton.addEventListener("click", closeModal);
-  cancelButton.addEventListener("click", closeModal);
+function buildPreRegistrationMailtoHref(recipient, payload) {
+  try {
+    const subject = "Bitte um Benachrichtigung zum SF2 Produktstart";
+    const body = [
+      "Guten Tag SF2-Team,",
+      "",
+      "bitte informieren Sie mich, sobald das erste Produkt online verfügbar ist.",
+      "",
+      "Angeforderte Aktion: " + (payload.requestedAction || "n/a"),
+      "Seite: " + (payload.page || "/"),
+      "Zeitpunkt: " + (payload.submittedAt || new Date().toISOString()),
+      "",
+      "Meine E-Mail-Adresse:",
+      "",
+      "Vielen Dank."
+    ].join("\n");
 
-  backdrop.addEventListener("click", (event) => {
-    if (event.target === backdrop) {
-      closeModal();
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !backdrop.hidden) {
-      closeModal();
-    }
-  });
-
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const email = emailInput.value.trim().toLowerCase();
-    if (!isValidEmail(email)) {
-      showStatus("Please enter a valid email address.", "error");
-      return;
-    }
-
-    submitButton.disabled = true;
-    submitButton.textContent = "Saving...";
-
-    const payload = {
-      email: email,
-      page: window.location.pathname,
-      requestedAction: requestedTarget,
-      submittedAt: new Date().toISOString()
-    };
-
-    let submitted = false;
-    let usedRemoteEndpoint = false;
-    let openedMailClient = false;
-
-    const endpoint =
-      typeof window.SF2_PRERELEASE_ENDPOINT === "string"
-        ? window.SF2_PRERELEASE_ENDPOINT.trim()
-        : "";
-
-    if (endpoint) {
-      try {
-        const response = await fetch(endpoint, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(payload)
-        });
-        if (response.ok) {
-          submitted = true;
-          usedRemoteEndpoint = true;
-        }
-      } catch (error) {
-        submitted = false;
-      }
-    }
-
-    if (!submitted) {
-      openedMailClient = openPreRegistrationMail(preRegistrationRecipient, payload);
-      submitted = openedMailClient || saveWaitlistEntryLocally(payload);
-    }
-
-    submitButton.disabled = false;
-    submitButton.textContent = "Notify me";
-
-    if (!submitted) {
-      showStatus("Your email could not be saved in this browser. Please try again.", "error");
-      return;
-    }
-
-    form.reset();
-    if (usedRemoteEndpoint) {
-      showStatus("Thanks. Your email was submitted for pre-release updates.", "success");
-    } else if (openedMailClient) {
-      showStatus("Your mail app opened with a pre-filled email to pre-registration@sf2systems.com. Please press Send.", "success");
-    } else {
-      showStatus("Email draft could not be opened. Please send your request to pre-registration@sf2systems.com.", "error");
-    }
-    window.setTimeout(closeModal, 900);
-  });
-
-  function openPreRegistrationMail(recipient, payload) {
-    try {
-      const subject = encodeURIComponent("SF2 Pre-Registration");
-      const body = encodeURIComponent(
-        [
-          "Please add me to the SF2 pre-release waitlist.",
-          "",
-          "Email: " + payload.email,
-          "Requested action: " + (payload.requestedAction || "n/a"),
-          "Page: " + payload.page,
-          "Submitted at: " + payload.submittedAt,
-          "",
-          "(Generated from the SF2 Systems pre-release popup.)"
-        ].join("\n")
-      );
-
-      window.location.href = "mailto:" + recipient + "?subject=" + subject + "&body=" + body;
-      return true;
-    } catch (error) {
-      return false;
-    }
+    return (
+      "mailto:" +
+      encodeURIComponent(recipient) +
+      "?subject=" +
+      encodeURIComponent(subject) +
+      "&body=" +
+      encodeURIComponent(body)
+    );
+  } catch (error) {
+    return "";
   }
-
-  function saveWaitlistEntryLocally(payload) {
-    try {
-      const existing = safeReadJSON(waitlistStorageKey);
-      const entries = Array.isArray(existing) ? existing : [];
-      if (!entries.some((entry) => entry && entry.email === payload.email)) {
-        entries.push(payload);
-      }
-      localStorage.setItem(waitlistStorageKey, JSON.stringify(entries));
-      return true;
-    } catch (error) {
-      return false;
-    }
-  }
-
-  function safeReadJSON(storageKey) {
-    const raw = localStorage.getItem(storageKey);
-    if (!raw) return [];
-    try {
-      return JSON.parse(raw);
-    } catch (error) {
-      return [];
-    }
-  }
-
-  document.body.appendChild(backdrop);
 }
 
 function isTransactionalLink(link) {
@@ -502,41 +359,4 @@ function isTransactionalLink(link) {
   const hasDownloadIntent = /(download|herunterladen|starter|trial)/i.test(label);
 
   return leadsToShopFlow && hasDownloadIntent;
-}
-
-function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function buildPreReleaseModal() {
-  const backdrop = document.createElement("div");
-  backdrop.className = "prerelease-backdrop";
-  backdrop.hidden = true;
-  backdrop.innerHTML =
-    '<section class="prerelease-modal" role="dialog" aria-modal="true" aria-labelledby="prerelease-title">' +
-      '<button class="prerelease-close" type="button" aria-label="Close">&times;</button>' +
-      '<h2 id="prerelease-title">Pre-release access</h2>' +
-      '<p class="prerelease-text">SF2 Systems is currently in pre-release. Enter your email and we will prepare a message to pre-registration@sf2systems.com.</p>' +
-      '<p class="prerelease-action" data-prerelease-action></p>' +
-      '<form class="prerelease-form" data-prerelease-form>' +
-        '<label for="prerelease-email">Work email</label>' +
-        '<input id="prerelease-email" class="prerelease-input" type="email" required autocomplete="email" placeholder="you@company.com" />' +
-        '<div class="prerelease-actions">' +
-          '<button class="cta-button primary" type="submit" data-prerelease-submit>Notify me</button>' +
-          '<button class="cta-button secondary" type="button" data-prerelease-cancel>Cancel</button>' +
-        "</div>" +
-        '<p class="prerelease-status" data-prerelease-status aria-live="polite"></p>' +
-      "</form>" +
-    "</section>";
-
-  return {
-    backdrop: backdrop,
-    closeButton: backdrop.querySelector(".prerelease-close"),
-    cancelButton: backdrop.querySelector("[data-prerelease-cancel]"),
-    form: backdrop.querySelector("[data-prerelease-form]"),
-    emailInput: backdrop.querySelector("#prerelease-email"),
-    statusMessage: backdrop.querySelector("[data-prerelease-status]"),
-    actionHint: backdrop.querySelector("[data-prerelease-action]"),
-    submitButton: backdrop.querySelector("[data-prerelease-submit]")
-  };
 }
