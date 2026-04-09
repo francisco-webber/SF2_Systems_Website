@@ -847,6 +847,26 @@ section {
   margin-top: 24px;
 }
 
+.shop-product-grid .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.shop-product-grid .card ul {
+  margin-bottom: 0;
+}
+
+.shop-product-grid .placeholder-actions,
+.shop-product-grid .card-link {
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.shop-product-grid .card-link {
+  align-self: flex-start;
+}
+
 .kicker {
   display: none;
 }
