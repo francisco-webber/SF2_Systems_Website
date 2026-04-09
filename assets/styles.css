@@ -4,6 +4,7 @@
   --bg-2: #0d1a2e;
   --header-logo-height: 46px;
   --header-logo-image-height: 40px;
+  --header-white-width: clamp(320px, 36vw, 520px);
   --cta-button-height: 42px;
   --hero-backdrop-rgb: 8, 22, 45;
   --hero-grid-rgb: 112, 134, 172;
@@ -64,22 +65,18 @@ button {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: #2f343d;
+  background-color: #2f343d;
+  background-image: linear-gradient(
+    90deg,
+    #ffffff 0,
+    #ffffff var(--header-white-width),
+    #2f343d var(--header-white-width),
+    #2f343d 100%
+  );
+  background-repeat: no-repeat;
   border-bottom: 0;
   backdrop-filter: none;
   isolation: isolate;
-}
-
-.site-header::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: var(--header-logo-height);
-  width: var(--header-white-width, max(220px, calc(50vw - 4cm)));
-  background: #fff;
-  pointer-events: none;
-  z-index: 0;
 }
 
 .site-header > .container {
@@ -713,8 +710,9 @@ section {
 
 .footer-top {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr 1fr 1fr;
-  gap: 28px;
+  grid-template-columns: minmax(260px, 1.15fr) repeat(3, minmax(0, 1fr));
+  column-gap: 34px;
+  row-gap: 28px;
   padding: 38px 0 22px;
 }
 
@@ -1359,6 +1357,7 @@ body.prerelease-modal-open {
   :root {
     --header-logo-height: 42px;
     --header-logo-image-height: 36px;
+    --header-white-width: clamp(240px, 82vw, 360px);
   }
   .desktop-nav,
   .header-cta {
@@ -1381,6 +1380,9 @@ body.prerelease-modal-open {
 }
 
 @media (max-width: 720px) {
+  :root {
+    --header-white-width: clamp(220px, 88vw, 320px);
+  }
   .hero {
     padding: 74px 0 60px;
   }

@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  initHeaderLogoBand();
   initMobileNavigation();
   initDesktopDropdownDismiss();
   initCarousel();
@@ -7,38 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initShopConversionFunnel();
   initPreRegistrationMailto();
 });
-
-function initHeaderLogoBand() {
-  const header = document.querySelector(".site-header");
-  if (!header) return;
-
-  const brand = header.querySelector(".brand");
-  if (!brand) return;
-
-  const updateHeaderWhiteZone = () => {
-    const desktopNav = header.querySelector(".desktop-nav");
-    const navVisible =
-      desktopNav &&
-      window.getComputedStyle(desktopNav).display !== "none" &&
-      desktopNav.getBoundingClientRect().width > 0;
-
-    const brandRect = brand.getBoundingClientRect();
-    let rightEdge = brandRect.right + 12;
-
-    if (navVisible) {
-      const navRect = desktopNav.getBoundingClientRect();
-      rightEdge = navRect.left;
-    }
-
-    const minRightEdge = brandRect.right + 8;
-    const safeRightEdge = Math.max(minRightEdge, rightEdge);
-    const expandedRightEdge = Math.min(window.innerWidth, safeRightEdge * 1.2);
-    header.style.setProperty("--header-white-width", Math.round(expandedRightEdge) + "px");
-  };
-
-  updateHeaderWhiteZone();
-  window.addEventListener("resize", updateHeaderWhiteZone, { passive: true });
-}
 
 function initMobileNavigation() {
   const toggle = document.querySelector("[data-mobile-toggle]");
@@ -227,15 +194,26 @@ function initShopConversionFunnel() {
   const shopHref = resolveRelativeShopIndexHref(pathname);
 
   actionButtons.forEach((buttonLink) => {
+    if (buttonLink.hasAttribute("data-no-shop-redirect")) return;
+
     const href = (buttonLink.getAttribute("href") || "").trim();
     if (!href) return;
 
     const normalizedHref = href.toLowerCase();
+    const hrefWithoutQuery = normalizedHref.split("#")[0].split("?")[0];
+    const isDirectDownloadPath =
+      normalizedHref.includes("/downloads/") || normalizedHref.includes("downloads/");
+    const isDirectDownloadFile = /\.(pdf|csv|txt|zip|gz|tar|tgz|7z|exe|dmg|pkg|msi|deb|rpm|mov|mp4|webm|json)$/i.test(hrefWithoutQuery);
+    const explicitDownload = buttonLink.hasAttribute("download");
+
     if (
       normalizedHref.startsWith("#") ||
       normalizedHref.startsWith("mailto:") ||
       normalizedHref.startsWith("tel:") ||
-      normalizedHref.startsWith("javascript:")
+      normalizedHref.startsWith("javascript:") ||
+      isDirectDownloadPath ||
+      isDirectDownloadFile ||
+      explicitDownload
     ) {
       return;
     }
