@@ -395,6 +395,16 @@ button {
   gap: 14px;
 }
 
+.cta-row-hero {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.cta-row-hero .cta-button {
+  width: 100%;
+}
+
 .cta-button {
   display: inline-flex;
   align-items: center;
@@ -1419,6 +1429,9 @@ body.prerelease-modal-open {
   .cta-row {
     flex-direction: column;
     align-items: stretch;
+  }
+  .cta-row-hero {
+    grid-template-columns: 1fr;
   }
   .cta-button {
     width: 100%;
