@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   initMobileNavigation();
   initDesktopDropdownDismiss();
+  initCaseStudyDropdownDismiss();
   initCarousel();
   initInViewVideos();
   initShopConversionFunnel();
@@ -27,6 +28,23 @@ function initDesktopDropdownDismiss() {
         dropdown.removeAttribute("open");
       }
     });
+  });
+}
+
+function initCaseStudyDropdownDismiss() {
+  const caseStudyDropdown = document.querySelector("details.cta-case-dropdown");
+  if (!caseStudyDropdown) return;
+
+  document.addEventListener("click", (event) => {
+    if (!caseStudyDropdown.contains(event.target)) {
+      caseStudyDropdown.removeAttribute("open");
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      caseStudyDropdown.removeAttribute("open");
+    }
   });
 }
 

@@ -400,6 +400,7 @@ button {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
+  overflow: visible;
 }
 
 .cta-row-hero .cta-button {
@@ -409,6 +410,7 @@ button {
 .cta-case-dropdown {
   position: relative;
   width: 100%;
+  overflow: visible;
 }
 
 .cta-case-dropdown summary {
@@ -444,13 +446,31 @@ button {
 }
 
 .cta-case-dropdown-menu {
-  position: static;
-  margin-top: 8px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% + 8px);
   padding: 8px;
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.18);
   background: rgba(9, 22, 40, 0.98);
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(6px) scale(0.98);
+  transform-origin: bottom center;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0.18s;
+  z-index: 2100;
+}
+
+.cta-case-dropdown[open] .cta-case-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
 .cta-case-dropdown-menu a {
@@ -1498,6 +1518,15 @@ body.prerelease-modal-open {
   }
   .cta-row-hero {
     grid-template-columns: 1fr;
+  }
+  .cta-case-dropdown-menu {
+    position: static;
+    margin-top: 8px;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: none;
   }
   .cta-button {
     width: 100%;
