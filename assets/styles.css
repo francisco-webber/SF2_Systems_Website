@@ -397,7 +397,7 @@ button {
 
 .cta-row-hero {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
 
@@ -1332,6 +1332,9 @@ body.prerelease-modal-open {
   .hero-visual {
     aspect-ratio: 3 / 2;
     min-height: 0;
+  }
+  .cta-row-hero {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .grid-3 {
     grid-template-columns: 1fr 1fr;
