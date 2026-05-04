@@ -444,16 +444,13 @@ button {
 }
 
 .cta-case-dropdown-menu {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  right: 0;
+  position: static;
+  margin-top: 8px;
   padding: 8px;
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.18);
   background: rgba(9, 22, 40, 0.98);
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
-  z-index: 20;
 }
 
 .cta-case-dropdown-menu a {
@@ -1501,10 +1498,6 @@ body.prerelease-modal-open {
   }
   .cta-row-hero {
     grid-template-columns: 1fr;
-  }
-  .cta-case-dropdown-menu {
-    position: static;
-    margin-top: 8px;
   }
   .cta-button {
     width: 100%;
