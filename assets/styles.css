@@ -397,12 +397,77 @@ button {
 
 .cta-row-hero {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
 }
 
 .cta-row-hero .cta-button {
   width: 100%;
+}
+
+.cta-case-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.cta-case-dropdown summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.cta-case-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.cta-case-dropdown > summary.cta-button {
+  position: relative;
+  justify-content: center;
+  padding-right: 40px;
+}
+
+.cta-case-dropdown > summary.cta-button::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-60%) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.cta-case-dropdown[open] > summary.cta-button::after {
+  transform: translateY(-40%) rotate(-135deg);
+}
+
+.cta-case-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  padding: 8px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(9, 22, 40, 0.98);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  z-index: 20;
+}
+
+.cta-case-dropdown-menu a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: rgba(255,255,255,0.92);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.cta-case-dropdown-menu a:hover,
+.cta-case-dropdown-menu a:focus-visible {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
 }
 
 .cta-button {
@@ -1435,6 +1500,10 @@ body.prerelease-modal-open {
   }
   .cta-row-hero {
     grid-template-columns: 1fr;
+  }
+  .cta-case-dropdown-menu {
+    position: static;
+    margin-top: 8px;
   }
   .cta-button {
     width: 100%;
